@@ -18,3 +18,10 @@ and streams-wordcount-output. This app just repurposes that
 streams-plaintext-input topic to read from. The eventual idea is that "sales"
 will be recorded to the topic, and this app will calculate a sales tax for each
 sale and produce that to a different tax topic.
+
+Assumes that the value written to the topic looks like this:
+
+    {
+      amount: < Decimal suitable for money >,
+      state_abbreviation: < A standard abbreviation for a state, like WA or OR >
+    }
