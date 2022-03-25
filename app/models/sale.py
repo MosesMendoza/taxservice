@@ -2,5 +2,5 @@ import faust
 from decimal import Decimal
 
 class Sale(faust.Record):
-  amount: float
+  amount: Decimal
 
