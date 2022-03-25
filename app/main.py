@@ -10,11 +10,12 @@ BROKER = 'kafka://localhost:9092'
 app = faust.App(APP_NAME,
                 broker=BROKER)
 
-@app.agent(TOPIC, key_type=str, value_type=Decimal)
+@app.agent(TOPIC, value_type=Sale)
 async def read_sale(sales):
-  async for sale in sales.items():
-    saleObj = Sale(sale)
-    print(f'Sale for {str(saleObj.amount)}')
+  async for sale in sales:
+    tax = sale.calculateTax()
+    print(f'Sale for {str(sale.amount)}')
+    print(f'Tax is {str(tax)}')
 
 if __name__ == '__main__':
     app.main()
